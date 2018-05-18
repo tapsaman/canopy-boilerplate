@@ -1,22 +1,27 @@
-var GrammarParser = require('./grammar.js');
+var Grammar = require('./grammar.js');
+//import Grammar from './grammar.js'
 
 module.exports = Parser
 
-const _stringToParse = process.argv[2]
+// Test string to parse given via cli.
+// Remove this to disable cli-usage.
+const __cli_string = process.argv[2]
 
-var canopyActions = {
+const canopyActions = {
 	make_object: function (input, start, end, elements) {
 		var object = {}
 
-		var firstKeyVarPair = elements[2].elements[0]
-		if ( firstKeyVarPair )
-			object[ firstKeyVarPair.key.value ]
-				= firstKeyVarPair.var.value
+		var firstObjectElement = elements[2].elements[0]
 
-		elements[2].elements[2].elements.forEach(function(element, i) {
-			var objectElement = element.elements[2]
-			object[ objectElement.key.value ] = objectElement.var.value
-		})
+		if ( firstObjectElement )
+			object[ firstObjectElement.key.value ]
+				= firstObjectElement.var.value
+
+		if ( elements[2].elements[2] )
+			elements[2].elements[2].elements.forEach(function(element, i) {
+				var objectElement = element.elements[2]
+				object[ objectElement.key.value ] = objectElement.var.value
+			})
 
 		return { 
 			value: object
@@ -62,66 +67,32 @@ var canopyActions = {
 	}
 }
 
-if (_stringToParse) {
-	Parser(_stringToParse)
+if (__cli_string) {
+	Parser(__cli_string, true)
 }
 
-function combineElements(treenode)
-{
-	if (typeof treenode === "string")
-		return treenode
-	if (treenode.elements.length === 0)
-		return treenode.text
-
-	var str = ""
-	for (var i=0; i < treenode.elements.length; i++)
-	{
-		str += combineElements(treenode.elements[i])
-	}
-	return str;
-}
-
-function Parser(stringToParse) {
+function Parser(stringToParse, doLog) {
 
 	var result = null
 
-	console.log(">>> Parsing")
-	console.log(stringToParse)
+	if (doLog) {
+		console.log(">>> Parsing")
+		console.log(stringToParse)
+	}
 
 	try {
-		console.log("asdasdA")
-		console.log(canopyActions.make_array)
-		result = GrammarParser.parse(stringToParse, {actions: canopyActions});
-		console.log( ">>> Result" )
-		console.log( result )
-
-		console.log( JSON.stringify(result, null, 4) )
-
-
+		result = Grammar.parse(stringToParse, {actions: canopyActions});
+		if (doLog) {
+			console.log( ">>> Result" )
+			console.log( JSON.stringify(result, null, 4) )
+		}
 	}
 	catch(err)
 	{
-		console.error( err )
-	}
-
-	return result
-}
-
-function ParserClass(stringToParse) {
-
-	var result = null
-
-	console.log(">>> Parsing")
-	console.log(stringToParse)
-
-	try {
-		result = GrammarParser.parse(stringToParse, {actions: canopyActions});
-		console.log( ">>> Result" )
-		console.log( result )
-	}
-	catch(err)
-	{
-		console.error( err )
+		if (doLog) {
+			console.log( ">>> PARSE ERROR" )
+			console.error( err )
+		}
 	}
 
 	return result

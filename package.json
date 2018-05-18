@@ -1,0 +1,34 @@
+{
+  "name": "canopy-boilerplate",
+  "version": "0.0.5",
+  "description": "Boilerplate for creating parsers with the awesome jcoglan/canopy -parser generator. Includes JSON-parsing example.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "json:parse": "canopy parsers/json/grammar.peg",
+    "json:parse-py": "canopy parsers/json/grammar.peg --lang py",
+    "json:es5": "babel parsers/json/index.js -o parsers/json/es5.js",
+    "json:test": "node parsers/json/index.js \"{ 'str': 'val1', 'num': 123, 'obj': {}, 'arr': [1,2,3] }\"",
+    "json:test-py": "python3 parsers/json/index.py \"{ 'str': 'val1', 'num': 123, 'obj': {}, 'arr': [1,2,3] }\"",
+    "json:test-es5": "node parsers/json/es5.js \"{ 'str': 'val1', 'num': 123, 'obj': {}, 'arr': [1,2,3] }\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tapsaman/canopy-boilerplate.git"
+  },
+  "author": "tapsaman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tapsaman/canopy-boilerplate/issues"
+  },
+  "homepage": "https://github.com/tapsaman/canopy-boilerplate#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "canopy": "^0.3.0"
+  }
+}
