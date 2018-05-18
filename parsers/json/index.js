@@ -8,12 +8,12 @@ var canopyActions = {
 	make_object: function (input, start, end, elements) {
 		var object = {}
 
-		var firstKeyVarPair = elements[1].elements[0]
+		var firstKeyVarPair = elements[2].elements[0]
 		if ( firstKeyVarPair )
 			object[ firstKeyVarPair.key.value ]
 				= firstKeyVarPair.var.value
 
-		elements[1].elements[1].elements.forEach(function(element, i) {
+		elements[2].elements[2].elements.forEach(function(element, i) {
 			var objectElement = element.elements[2]
 			object[ objectElement.key.value ] = objectElement.var.value
 		})
@@ -25,11 +25,11 @@ var canopyActions = {
 	make_array: function (input, start, end, elements) {
 		var array = []
 
-		var firstArrayElement = elements[1].elements[0]
+		var firstArrayElement = elements[2].elements[0]
 		if ( firstArrayElement )
 			array[0] = firstArrayElement.value
 
-		elements[1].elements[1].elements.forEach(function(element, i) {
+		elements[2].elements[2].elements.forEach(function(element, i) {
 			var arrayElement = element.elements[2]
 			array.push( arrayElement.value )
 		})

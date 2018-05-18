@@ -12,9 +12,10 @@ grammar JSON
   uint          <-  [0-9]+ %make_number
   float         <-  "-"? [0-9]+ ("." [0-9]+)? %make_number
   ufloat        <-  [0-9]+ ("." [0-9]+)? %make_number
-  object        <-  "{" (key_var_pair ("," key_var_pair)*)? "}" %make_object
-  array         <-  "[" (var ("," var)*)? "]" %make_array
-  key_var_pair  <-  key ":" var
+  
+  object        <-  "{" sp (key_var_pair sp ("," sp key_var_pair sp)*)? "}" %make_object
+  array         <-  "[" sp (var sp ("," sp var sp)*)? "]" %make_array
+  key_var_pair  <-  key sp ":" sp var
   key           <-  float / string
   var           <-  float / string / object / array
   esc           <-  "\\" "\\\\"*
