@@ -1,0 +1,22 @@
+## PEG-example written for canopy-boilerplate #
+## ========================================== #
+# auth: tapsaman
+# repo: https://github.com/tapsaman/canopy-boilerplate.git
+# date: 2018/05/18 12:14
+
+grammar JSON
+  json          <-  object / array
+
+  string        <-  "\"" (esc "\"" / [^"])* "\"" %make_string / "'" (esc "'" / [^'])* "'" %make_string
+  int           <-  "-"? [0-9]+ %make_number
+  uint          <-  [0-9]+ %make_number
+  float         <-  "-"? [0-9]+ ("." [0-9]+)? %make_number
+  ufloat        <-  [0-9]+ ("." [0-9]+)? %make_number
+  object        <-  "{" (key_var_pair (&"," "," key_var_pair)*)? "}" %make_object
+  array         <-  "[" (var (&"," "," var)*)? "]" %make_array
+  key_var_pair  <-  key ":" var
+  key           <-  float / string
+  var           <-  float / string / object / array
+  esc           <-  "\\" "\\\\"*
+  endOfInput    <-  !.
+  sp            <-  " "*
