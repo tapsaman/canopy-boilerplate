@@ -8,18 +8,14 @@ var canopyActions = {
 	make_object: function (input, start, end, elements) {
 		var object = {}
 
-		//console.log( elements[1].elements )
-
 		var firstKeyVarPair = elements[1].elements[0]
 		if ( firstKeyVarPair )
-			object[ firstKeyVarPair.key.value || firstKeyVarPair.key.text ]
-				= firstKeyVarPair.var.value || firstKeyVarPair.var.text
+			object[ firstKeyVarPair.key.value ]
+				= firstKeyVarPair.var.value
 
 		elements[1].elements[1].elements.forEach(function(element, i) {
-			console.log("åååå", element)
 			var objectElement = element.elements[2]
-			object[ objectElement.key.value || objectElement.key.text ]
-				= objectElement.var.value || objectElement.var.text
+			object[ objectElement.key.value ] = objectElement.var.value
 		})
 
 		return { 
@@ -31,11 +27,11 @@ var canopyActions = {
 
 		var firstArrayElement = elements[1].elements[0]
 		if ( firstArrayElement )
-			array[0] = firstArrayElement.value || firstArrayElement.text
+			array[0] = firstArrayElement.value
 
 		elements[1].elements[1].elements.forEach(function(element, i) {
 			var arrayElement = element.elements[2]
-			array.push( arrayElement.value || arrayElement.text )
+			array.push( arrayElement.value )
 		})
 
 		return { 
