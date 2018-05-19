@@ -1,3 +1,10 @@
+// JSON-parsing example written for canopy-boilerplate #
+// =================================================== #
+// repo: https://github.com/tapsaman/canopy-boilerplate.git
+// auth: tapsaman
+// date: 2018/05/19
+// file: Defines Canopy-parsing logic for JavaScript JSON-parser
+
 var Grammar = require('./grammar.js');
 //import Grammar from './grammar.js'
 
@@ -67,10 +74,6 @@ const canopyActions = {
 	}
 }
 
-if (__cli_string) {
-	Parser(__cli_string, true)
-}
-
 function Parser(stringToParse, doLog) {
 
 	var result = null
@@ -96,4 +99,8 @@ function Parser(stringToParse, doLog) {
 	}
 
 	return result
+}
+
+if (__cli_string) {
+	Parser(__cli_string, true)
 }

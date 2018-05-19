@@ -1,3 +1,10 @@
+# JSON-parsing example written for canopy-boilerplate #
+# =================================================== #
+# repo: https://github.com/tapsaman/canopy-boilerplate.git
+# auth: tapsaman
+# date: 2018/05/19
+# file: Defines Canopy-parsing logic for Python JSON-parser
+
 import grammar
 import sys		# for cli
 import json		# for pretty printing results

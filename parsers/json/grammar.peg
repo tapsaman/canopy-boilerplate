@@ -2,7 +2,8 @@
 # =================================================== #
 # repo: https://github.com/tapsaman/canopy-boilerplate.git
 # auth: tapsaman
-# date: 2018/05/18 12:14
+# date: 2018/05/19
+# file: Defines JSON grammar
 
 grammar JSON
   json          <-  object / array 
