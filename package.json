@@ -11,7 +11,8 @@
     "json:parse-py": "canopy parsers/json/grammar.peg --lang py",
     "json:es5": "babel parsers/json/index.js -o parsers/json/es5.js",
     "json:test": "node parsers/json/index.js \"{ 'str': 'val1', 'num': 123, 'obj': {}, 'arr': [1,2,3] }\"",
-    "json:test-py": "python3 parsers/json/index.py \"{ 'str': 'val1', 'num': 123, 'obj': {}, 'arr': [1,2,3] }\"",
+    "json:test-py": "python parsers/json/index.py \"{ 'str': 'val1', 'num': 123, 'obj': {}, 'arr': [1,2,3] }\"",
+    "json:test-py3": "python3 parsers/json/index.py \"{ 'str': 'val1', 'num': 123, 'obj': {}, 'arr': [1,2,3] }\"",
     "json:test-es5": "node parsers/json/es5.js \"{ 'str': 'val1', 'num': 123, 'obj': {}, 'arr': [1,2,3] }\""
   },
   "repository": {

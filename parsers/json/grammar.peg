@@ -5,7 +5,7 @@
 # date: 2018/05/18 12:14
 
 grammar JSON
-  json          <-  object / array
+  json          <-  object / array 
 
   string        <-  "\"" (esc "\"" / [^"])* "\"" %make_string / "'" (esc "'" / [^'])* "'" %make_string
   int           <-  "-"? [0-9]+ %make_number
