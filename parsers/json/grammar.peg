@@ -1,7 +1,7 @@
-## PEG-example written for canopy-boilerplate #
-## ========================================== #
-# auth: tapsaman
+# JSON-parsing example written for canopy-boilerplate #
+# =================================================== #
 # repo: https://github.com/tapsaman/canopy-boilerplate.git
+# auth: tapsaman
 # date: 2018/05/18 12:14
 
 grammar JSON
